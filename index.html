@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pesan Bazzar Event Desk</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .wrapper { padding: 16px; }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,.08);
+      max-width: 480px;
+      margin: auto;
+    }
+    h2 { text-align: center; margin-bottom: 10px; }
+    .deskripsi {
+      font-size: 14px; color: #555;
+      margin-bottom: 20px; text-align: justify;
+    }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="time"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fff;
+      font-family: Arial, sans-serif;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    button {
+      width: 100%; margin-top: 20px; padding: 14px;
+      background: #25d366; color: #fff; border: none;
+      border-radius: 8px; font-size: 16px; cursor: pointer;
+    }
+    button:hover { background: #1ebe5d; }
+    .note {
+      margin-top: 20px; font-size: 14px; color: #d35400;
+      background: #fff6e5; padding: 12px; border-radius: 8px;
+    }
+    .note b { display: block; font-size: 16px; color: #c0392b; margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <form onsubmit="sendToWhatsApp();return false;">
+      <h2>Pesan "Bazzar Event Desk"</h2>
+
+      <div class="deskripsi">
+        Event desk adalah meja promosi berbahan dasar pvc serta fiber, berbentuk melengkung di bagian depannya, ada plang diatasnya yang biasa saya sebut dengan header, dan bagian tengah lacinya dapat di pergunakan untuk menaruh barang lain. Biasa digunakan pada acara bazar, resepsi, pameran dan lain lain. Event Desk bersifat portable dengan sistem knockdown, mudah di bongkar pasang, cocok untuk branding atau aktivasi produk.
+      </div>
+
+      <label>Nama Anda</label>
+      <input type="text" id="nama" required />
+
+      <label>Nomor WhatsApp Anda</label>
+      <input type="tel" id="nowa" pattern="[0-9]+" required />
+
+      <label>Dengan Bahan</label>
+      <select id="bahan" required>
+        <option value="" disabled selected>Pilih Bahan</option>
+        <option value="Sticker Vinyl Susu Glossy">Sticker Vinyl Susu Glossy</option>
+        <option value="Sticker Vinyl Susu Matte">Sticker Vinyl Susu Matte</option>
+        <option value="Sticker Albatros">Sticker Albatros</option>
+      </select>
+
+      <label>Lapisan Laminasi</label>
+      <select id="laminasi" required>
+        <option value="" disabled selected>Pilih Laminasi</option>
+        <option value="Tanpa Laminasi">Tanpa Laminasi</option>
+        <option value="Laminasi Doff">Laminasi Doff</option>
+        <option value="Laminasi Glossy">Laminasi Glossy</option>
+      </select>
+
+      <label>Jumlah</label>
+      <input type="number" id="jumlah" min="1" required />
+
+      <label>Kapan Dibutuhkan?</label>
+      <input type="date" id="tanggal" required />
+
+      <label>Pada Jam Berapa?</label>
+      <input type="time" id="jam" required />
+
+      <label>Catatan Khusus untuk Admin Kami</label>
+      <textarea id="catatan" placeholder="Contoh: Saya butuh cepat ya, terus kirimkan ke saya dulu untuk mockup preview nya sebelum di cetak. dll."></textarea>
+
+<div class="note">
+        <b>Penting !</b>
+        Estimasi Dateline Yang Anda Atur Bisa Berubah Sesuai Kondisi Antrian, Anda Bisa Atur Negosiasi Waktu Dateline Dengan Admin Kami. <b>"Pastikan File Anda Ready / Siap Print"</b>
+      </div>
+
+      <button type="submit">Cek Harga ke Admin Metropolis Print</button>
+
+          </form>
+  </div>
+
+  <script>
+    function formatTanggalIndo(tgl) {
+      const bulan = ["Januari","Februari","Maret","April","Mei","Juni",
+                     "Juli","Agustus","September","Oktober","November","Desember"];
+      const hari = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+      const d = new Date(tgl);
+      return `${hari[d.getDay()]}, ${d.getDate()} ${bulan[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function sendToWhatsApp() {
+      const nama = document.getElementById('nama').value;
+      const nowa = document.getElementById('nowa').value;
+      const bahan = document.getElementById('bahan').value;
+      const laminasi = document.getElementById('laminasi').value;
+      const jumlah = document.getElementById('jumlah').value;
+      const tanggal = formatTanggalIndo(document.getElementById('tanggal').value);
+      const jam = document.getElementById('jam').value;
+      const catatan = document.getElementById('catatan').value || "-";
+
+      const adminWa = "6281216370657";
+      const pesan =
+        `📌 Pemesanan Bazzar Event Desk\n\n` +
+        `👤 Nama: ${nama}\n` +
+        `📱 No. WA: ${nowa}\n` +
+        `🧾 Bahan: ${bahan}\n` +
+        `✨ Laminasi: ${laminasi}\n` +
+        `🔢 Jumlah: ${jumlah} pcs\n` +
+        `🗓️ Hari Dateline: ${tanggal}\n` +
+        `⏰ Jam Dateline: ${jam}\n` +
+        `📝 Catatan: ${catatan}`;
+
+      window.open(`https://wa.me/${adminWa}?text=${encodeURIComponent(pesan)}`, "_blank");
+    }
+  </script>
+</body>
+</html>
